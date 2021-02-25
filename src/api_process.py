@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from pony import orm
 from requests import get
 
+import settings
 from ORM.models import WeatherRecord
 from utils import kelvin_to_celsius
 
@@ -24,10 +25,11 @@ def get_api_dict(api_call: str) -> dict:
 
 class Weather:
     def __init__(self, city: str) -> None:
+        self.city = city
+
         self.api_call = f'http://api.openweathermap.org/data/2.5/weather?q={self.city}&appid={API_KEY}'
         self.api_dict = get_api_dict(self.api_call)
 
-        self.city = city
         self.country_name = self.api_dict.get('sys').get('country')
         self.weather_description = self.api_dict.get('weather')[0].get('description')
 
@@ -39,14 +41,13 @@ class Weather:
 
         self.pressure = api_dict_main.get('pressure')
         self.humidity = api_dict_main.get('humidity')
-        self.visibility = api_dict_main.get('visibility')
 
         self.database = None
 
     def database_connection_init(self) -> None:
-        self.database = orm.Database('sqlite')
+        self.database = orm.Database()
         
-        self.database.bind('sqlite', 'weather.sqlite', create_db=True)
+        self.database.bind('sqlite', settings.DB_PATH, create_db=True)
         self.database.generate_mapping(create_tables=True)
 
     @orm.db_session
@@ -60,6 +61,5 @@ class Weather:
             max_temperature=self.max_temperature,
             pressure=self.pressure,
             humidity=self.humidity,
-            visibility=self.visibility,
         )
-        self.database.commit()
+        orm.commit()

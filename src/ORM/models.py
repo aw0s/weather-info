@@ -3,9 +3,11 @@
 
 from pony import orm
 
+from app.src import settings
+
 
 database = orm.Database()
-database.bind('sqlite', 'weather.sqlite')
+database.bind('sqlite', settings.DB_PATH, create_db=True)
 
 
 class WeatherRecord(database.Entity):
@@ -21,4 +23,6 @@ class WeatherRecord(database.Entity):
 
     pressure = orm.Required(float)
     humidity = orm.Required(int)
-    visibility = orm.Required(int)
+
+
+database.generate_mapping(create_tables=True)

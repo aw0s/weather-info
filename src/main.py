@@ -9,8 +9,11 @@ def main() -> None:
 
     # while inp := input("<<< ") != "exit":
 
-    weather = api_process.Weather('Świdnik')
-    print(weather.temperature_F)
+    weather = api_process.Weather(city='Świdnik')
+    weather.database_connection_init()
+    weather.save_weather_record()
+
+    print(weather.humidity)
 
 
 if __name__ == '__main__':
