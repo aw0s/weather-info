@@ -45,8 +45,21 @@ class Weather:
 
     def database_connection_init(self) -> None:
         self.database = orm.Database('sqlite')
+        
         self.database.bind('sqlite', 'weather.sqlite', create_db=True)
+        self.database.generate_mapping(create_tables=True)
 
     @orm.db_session
-    def save_weather_record(self, database: orm.Database) -> None:
-        pass
+    def save_weather_record(self) -> None:
+        WeatherRecord(
+            city=self.city,
+            country_name=self.country_name,
+            description=self.weather_description,
+            temperature_c=self.temperature_c,
+            min_temperature=self.min_temperature,
+            max_temperature=self.max_temperature,
+            pressure=self.pressure,
+            humidity=self.humidity,
+            visibility=self.visibility,
+        )
+        self.database.commit()

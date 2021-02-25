@@ -4,7 +4,11 @@
 from pony import orm
 
 
-class WeatherRecord:
+database = orm.Database()
+database.bind('sqlite', 'weather.sqlite')
+
+
+class WeatherRecord(database.Entity):
     id = orm.PrimaryKey(int, auto=True)
 
     city = orm.Required(str)
