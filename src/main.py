@@ -8,7 +8,9 @@ def main() -> None:
     # print(api_process.get_api_dict(api_call='http://api.openweathermap.org/data/2.5/weather?q=Warsaw&appid='))
 
     # while inp := input("<<< ") != "exit":
-    pass
+
+    weather = api_process.Weather('Świdnik')
+    print(weather.temperature_F)
 
 
 if __name__ == '__main__':
