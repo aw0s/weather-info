@@ -3,7 +3,6 @@
 
 from pathlib import Path
 
-
 # DB
 DB_PATH = f'{Path().absolute()}/weather.sqlite'
 
@@ -11,4 +10,4 @@ DB_PATH = f'{Path().absolute()}/weather.sqlite'
 CITY = 'Warsaw'  # This city's records will be saved to the database
 
 # Scheduler
-SAVE_RECORD_TIME = 0.1  # Time in minutes
+SAVE_RECORD_TIME = 10  # Time in minutes

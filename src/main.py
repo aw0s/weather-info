@@ -12,10 +12,10 @@ from ORM.models import WeatherModel
 
 def db_save_timer() -> None:
     while True:
+        save_record()
+
         time_seconds = settings.SAVE_RECORD_TIME * 60
         sleep(time_seconds)
-
-        save_record()
 
 
 def main() -> None:
