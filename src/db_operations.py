@@ -5,7 +5,7 @@ from pony import orm as ponyorm
 
 import settings
 from api_process import Weather
-from ORM.models import WeatherRecord
+from ORM.models import WeatherModel
 
 
 class WeatherSave(Weather):
@@ -20,9 +20,9 @@ class WeatherSave(Weather):
 
     @ponyorm.db_session
     def save_weather_record(self) -> None:
-        WeatherRecord(
+        WeatherModel(
             city=self.city,
-            country_name=self.country_name,
+            country=self.country,
             description=self.weather_description,
             temperature_c=self.temperature_c,
             min_temperature=self.min_temperature,
@@ -31,3 +31,9 @@ class WeatherSave(Weather):
             humidity=self.humidity,
         )
         ponyorm.commit()
+
+
+def save_record() -> None:
+    weather_save = WeatherSave(city=settings.CITY)
+    weather_save.database_connection_init()
+    weather_save.save_weather_record()

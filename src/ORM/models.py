@@ -10,11 +10,11 @@ database = ponyorm.Database()
 database.bind('sqlite', settings.DB_PATH, create_db=True)
 
 
-class WeatherRecord(database.Entity):
+class WeatherModel(database.Entity):
     id = ponyorm.PrimaryKey(int, auto=True)
 
     city = ponyorm.Required(str)
-    country_name = ponyorm.Required(str)
+    country = ponyorm.Required(str)
     description = ponyorm.Required(str)
 
     temperature_c = ponyorm.Required(float)
