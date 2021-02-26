@@ -1,19 +1,30 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import api_process
+import schedule
+
+import settings
+from api_process import Weather
+from db_operations import WeatherSave
+
+
+def save_record() -> None:
+    weather_save = WeatherSave(city=settings.CITY)
+    weather_save
 
 
 def main() -> None:
-    # print(api_process.get_api_dict(api_call='http://api.openweathermap.org/data/2.5/weather?q=Warsaw&appid='))
+    schedule.every().minute.do(save_record)
 
-    # while inp := input("<<< ") != "exit":
-
-    weather = api_process.Weather(city='Świdnik')
-    weather.database_connection_init()
-    weather.save_weather_record()
-
-    print(weather.humidity)
+    while inp := input("<<< ") != "exit":
+        if inp == 'weather-info':
+            pass
+        elif inp == 'db-read-mode':
+            pass
+        elif inp == 'set-scheduler':
+            pass
+        else:
+            print("Unrecognized command.")
 
 
 if __name__ == '__main__':

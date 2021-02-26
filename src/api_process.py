@@ -5,11 +5,9 @@ from json import loads
 from os import getenv
 
 from dotenv import load_dotenv
-from pony import orm
+from pony import orm as ponyorm
 from requests import get
 
-import settings
-from ORM.models import WeatherRecord
 from utils import kelvin_to_celsius
 
 
@@ -42,24 +40,4 @@ class Weather:
         self.pressure = api_dict_main.get('pressure')
         self.humidity = api_dict_main.get('humidity')
 
-        self.database = None
-
-    def database_connection_init(self) -> None:
-        self.database = orm.Database()
-        
-        self.database.bind('sqlite', settings.DB_PATH, create_db=True)
-        self.database.generate_mapping(create_tables=True)
-
-    @orm.db_session
-    def save_weather_record(self) -> None:
-        WeatherRecord(
-            city=self.city,
-            country_name=self.country_name,
-            description=self.weather_description,
-            temperature_c=self.temperature_c,
-            min_temperature=self.min_temperature,
-            max_temperature=self.max_temperature,
-            pressure=self.pressure,
-            humidity=self.humidity,
-        )
-        orm.commit()
+        self.database = ponyorm.Database()

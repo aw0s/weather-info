@@ -1,28 +1,28 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from pony import orm
+from pony import orm as ponyorm
 
 from app.src import settings
 
 
-database = orm.Database()
+database = ponyorm.Database()
 database.bind('sqlite', settings.DB_PATH, create_db=True)
 
 
 class WeatherRecord(database.Entity):
-    id = orm.PrimaryKey(int, auto=True)
+    id = ponyorm.PrimaryKey(int, auto=True)
 
-    city = orm.Required(str)
-    country_name = orm.Required(str)
-    description = orm.Required(str)
+    city = ponyorm.Required(str)
+    country_name = ponyorm.Required(str)
+    description = ponyorm.Required(str)
 
-    temperature_c = orm.Required(float)
-    min_temperature = orm.Required(float)
-    max_temperature = orm.Required(float)
+    temperature_c = ponyorm.Required(float)
+    min_temperature = ponyorm.Required(float)
+    max_temperature = ponyorm.Required(float)
 
-    pressure = orm.Required(float)
-    humidity = orm.Required(int)
+    pressure = ponyorm.Required(float)
+    humidity = ponyorm.Required(int)
 
 
 database.generate_mapping(create_tables=True)
