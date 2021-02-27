@@ -8,7 +8,7 @@ Weather info collector app. This program collects weather data every particular 
 4. Then `cd weather-info-collector`.  
 6. Install requirements: `pip install -r requirements.txt`.  
 7. Get API key from `https://home.openweathermap.org/api_keys`.  
-8. Create `.env` file and put `API_KEY=(your API key)` there.
+8. Create `.env` file by typing `touch src/.env` and put `API_KEY=(your API key)` there.
 10. After that, you should be able to run the program.  
 11. Type `python src/main.py`.  And that's all. It should work :D  
 
