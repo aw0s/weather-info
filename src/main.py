@@ -4,9 +4,12 @@
 from threading import Thread
 from time import sleep
 
+from pony.orm import db_session
+
 import settings
 from api_process import Weather
 from db_operations import save_record
+from models import WeatherModel
 
 
 def db_save_timer() -> None:
@@ -27,28 +30,22 @@ def main() -> None:
 
             print(str(weather))
         elif inp == 'db-read-mode':
-            from ORM.models import WeatherModel
-
             record_id = int(input("Type record id: "))
-            weather_record = WeatherModel.get(id=record_id)
+
+            with db_session:
+                weather_record = WeatherModel.get(id=record_id)
 
             message = (
                 f"Record ID: {weather_record.id}\n"
                 f"City: {weather_record.city}  Country: {weather_record.country}\n"
                 f"Weather description: {weather_record.description}\n"
-                f"Temperature (Celsius degrees): {weather_record.temperature}\n"
+                f"Temperature (Celsius degrees): {weather_record.temperature_c}\n"
                 f"Minimal temperature: {weather_record.min_temperature}\n"
                 f"Maximal temperature: {weather_record.max_temperature}\n"
                 f"Pressure: {weather_record.pressure}\n"
                 f"Humidity: {weather_record.humidity}\n"
             )
-            print(message)
-
-        elif inp == 'set-record-save-time':
-            time_minutes = int(input("Type record save time in minutes: "))
-
-            settings.SAVE_RECORD_TIME = time_minutes
-            print("Saved successfully.")
+            print(f"\n{message}")
         else:
             print("Unrecognized command.")
 
