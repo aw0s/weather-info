@@ -5,7 +5,7 @@ from pony import orm as ponyorm
 
 import settings
 from api_process import Weather
-from ORM.models import WeatherModel
+from models import WeatherModel
 
 
 class WeatherSave(Weather):
