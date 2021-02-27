@@ -7,7 +7,6 @@ from time import sleep
 import settings
 from api_process import Weather
 from db_operations import save_record
-from ORM.models import WeatherModel
 
 
 def db_save_timer() -> None:
@@ -28,6 +27,8 @@ def main() -> None:
 
             print(str(weather))
         elif inp == 'db-read-mode':
+            from ORM.models import WeatherModel
+
             record_id = int(input("Type record id: "))
             weather_record = WeatherModel.get(id=record_id)
 
@@ -44,7 +45,7 @@ def main() -> None:
             print(message)
 
         elif inp == 'set-record-save-time':
-            time_minutes = int(input("Type record save time: "))
+            time_minutes = int(input("Type record save time in minutes: "))
 
             settings.SAVE_RECORD_TIME = time_minutes
             print("Saved successfully.")

@@ -12,7 +12,7 @@ class WeatherSave(Weather):
     def __init__(self, city: str):
         super().__init__(city)
 
-        self.data = ponyorm.Database()
+        self.database = ponyorm.Database()
 
     def database_connection_init(self) -> None:
         self.database.bind('sqlite', settings.DB_PATH, create_db=True)
