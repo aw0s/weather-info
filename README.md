@@ -16,6 +16,6 @@ Type `python src/main.py`. And that's all. It should work :D
  Using this command, you can get record from database by id.
  
  ## Settings
- `DB_PATH` - Database path. 
- `CITY` - Records of this city will be stored in the database. 
- `SAVE_RECORD_TIME` - Time interval between which records will be written to the database.
+ `DB_PATH` - Database path.  
+ `CITY` - Records of this city will be stored in the database.  
+ `SAVE_RECORD_TIME` - Time interval between which records will be written to the database. 
