@@ -34,9 +34,9 @@ class Weather:
 
         api_dict_main = self.api_dict.get('main')
         temperature_k = api_dict_main.get('temp')
-        self.temperature_c = round(kelvin_to_celsius(temperature_k), 1)
-        self.min_temperature = round(kelvin_to_celsius(api_dict_main.get('temp_min')), 1)
-        self.max_temperature = round(kelvin_to_celsius(api_dict_main.get('temp_max')), 1)
+        self.temperature_c = kelvin_to_celsius(temperature_k, decimal_places=1)
+        self.min_temperature = kelvin_to_celsius(api_dict_main.get('temp_min'), decimal_places=1)
+        self.max_temperature = kelvin_to_celsius(api_dict_main.get('temp_max'), decimal_places=1)
 
         self.pressure = api_dict_main.get('pressure')
         self.humidity = api_dict_main.get('humidity')

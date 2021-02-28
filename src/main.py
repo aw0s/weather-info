@@ -34,7 +34,7 @@ def main() -> None:
                 weather = Weather(city=city)
                 print(str(weather))
             except AttributeError:
-                print("Weather API couldn't find any city satisfying your requirements..")
+                print("Weather API couldn't find any city satisfying your requirements.")
         elif command == 'db-read-mode':
             record_id = int(input("Type record id: "))
 
