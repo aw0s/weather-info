@@ -2,6 +2,8 @@
 Weather info collector app. This program collects weather data every particular time. It can also print current weather information of specific city. 
 
 # Installation
+I suppose that you're Linux user.
+
 1. Make sure that you've installed Python.
 2. `Cd` into directory that you want the app to be installed in.  
 3. Type `git clone https://github.com/aw0s/weather-info-collector.git`.  
