@@ -3,6 +3,7 @@
 
 from pathlib import Path
 
+
 # DB
 DB_PATH = f'{Path().absolute()}/weather.sqlite'
 

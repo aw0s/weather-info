@@ -5,6 +5,7 @@ from pony import orm as ponyorm
 
 import settings
 
+
 database = ponyorm.Database()
 database.bind('sqlite', settings.DB_PATH, create_db=True)
 

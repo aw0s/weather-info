@@ -11,6 +11,7 @@ from requests import get
 import settings
 from utils import kelvin_to_celsius
 
+
 load_dotenv()
 API_KEY = getenv('API_KEY')
 
