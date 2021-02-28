@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from sys import argv
 from threading import Thread
 from time import sleep
 
@@ -23,13 +24,18 @@ def db_save_timer() -> None:
 def main() -> None:
     Thread(target=db_save_timer).start()
 
-    while (inp := input(">>> ")) != "exit":
-        if inp == 'weather-info':
-            city = input("City: ")
-            weather = Weather(city=city)
+    if len(argv) > 1:
+        command = argv[1]
 
-            print(str(weather))
-        elif inp == 'db-read-mode':
+        if command == 'weather-info':
+            city = input("City: ")
+
+            try:
+                weather = Weather(city=city)
+                print(str(weather))
+            except AttributeError:
+                print("Weather API couldn't find any city satisfying your requirements..")
+        elif command == 'db-read-mode':
             record_id = int(input("Type record id: "))
 
             with db_session:
@@ -48,6 +54,8 @@ def main() -> None:
             print(f"\n{message}")
         else:
             print("Unrecognized command.")
+
+    print("\nCollecting data mode.")
 
 
 if __name__ == '__main__':
