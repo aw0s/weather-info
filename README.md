@@ -1,5 +1,5 @@
 # weather-info
-Weather info collector app. This program collects weather data every particular time. It can also print current weather information from specific city. 
+Weather info collector app. This program collects weather data every particular time. It can also print current weather information of specific city. 
 
 # Installation
 1. Make sure that you've installed Python.
@@ -13,9 +13,9 @@ Weather info collector app. This program collects weather data every particular 
 11. Type `python src/main.py`.  And that's all. It should work :D  
 
  # Documentation
- If you run the app, you should see the command prompt.
+ By running `weather-info-collector` without any parameters, the application will only collect data. By passing arguments specified below to the program, you can enter specific mode.
  
- ## Commands
+ ## Arguments
  ### weather-info
  This command is responsible for printing weather information of the particular city.
  
